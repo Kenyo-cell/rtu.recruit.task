@@ -1,11 +1,13 @@
 package rtu.recruit.entities;
 
+import rtu.recruit.enums.Category;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="purchases")
-public class PurchaseEntity {
+@Table(name = "products")
+public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,9 +22,20 @@ public class PurchaseEntity {
     @Column(name = "total_cost", nullable = false)
     private double cost;
 
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne(targetEntity = UserEntity.class, cascade = CascadeType.DETACH)
-    private UserEntity user;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "category")
+    private Category category;
+
+    public ProductEntity() {}
+
+    public ProductEntity(long id, Date date, String name,
+                         double cost, Category category) {
+        this.id = id;
+        this.date = date;
+        this.name = name;
+        this.cost = cost;
+        this.category = category;
+    }
 
     public long getId() {
         return id;
@@ -54,13 +67,5 @@ public class PurchaseEntity {
 
     public void setCost(double cost) {
         this.cost = cost;
-    }
-
-    public UserEntity getUser() {
-        return user;
-    }
-
-    public void setUser(UserEntity user) {
-        this.user = user;
     }
 }

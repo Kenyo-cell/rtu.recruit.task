@@ -2,7 +2,7 @@ package rtu.recruit.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import rtu.recruit.entities.PurchaseEntity;
+import rtu.recruit.entities.ProductEntity;
 import rtu.recruit.entities.UserEntity;
 import rtu.recruit.exceptions.PurchaseDBException;
 import rtu.recruit.exceptions.UserDBException;
@@ -20,19 +20,19 @@ public class PurchaseService {
     @Autowired
     PurchaseRepo purchaseRepo;
 
-    public PurchaseEntity addOrUpdate(long userId, PurchaseEntity purchase) throws UserDBException {
+    public ProductEntity addOrUpdate(long userId, ProductEntity product) throws UserDBException {
         Optional<UserEntity> user = userRepo.findById(userId);
         if (!user.isPresent()) throw new UserDBException("User not found");
-        purchase.setUser(user.get());
-        return purchaseRepo.save(purchase);
+
+        return purchaseRepo.save(product);
     }
 
-    public List<PurchaseEntity> getAllByUserId(long userId) {
-        List<PurchaseEntity> entities = purchaseRepo.findAllByUserId(userId);
+    public List<ProductEntity> getAllByUserId(long userId) {
+        List<ProductEntity> entities = purchaseRepo.findAllByUserId(userId);
         return entities;
     }
 
-    public PurchaseEntity getById(long id) throws PurchaseDBException {
+    public ProductEntity getById(long id) throws PurchaseDBException {
         if (!purchaseRepo.existsById(id)) throw new PurchaseDBException("Not found");
         return purchaseRepo.findById(id).get();
     }

@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS checks (
     ON UPDATE CASCADE
 ) engine=MyISAM;
 
-CREATE TABLE IF NOT EXISTS check_products (
+CREATE TABLE IF NOT EXISTS check_item (
     check_id INT NOT NULL,
     product_id INT NOT NULL,
     cnt DOUBLE NOT NULL,
@@ -33,5 +33,6 @@ CREATE TABLE IF NOT EXISTS check_products (
     ON UPDATE NO ACTION,
     CONSTRAINT product_id_fk FOREIGN KEY (product_id) REFERENCES products (id)
     ON DELETE RESTRICT
-    ON UPDATE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT pk_id PRIMARY KEY (check_id, product_id)
 ) engine=MyISAM;

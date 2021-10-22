@@ -21,8 +21,8 @@ public class UserEntity {
     @Column(name = "address")
     private String address;
 
-    @OneToMany(targetEntity = PurchaseEntity.class, cascade = CascadeType.ALL, mappedBy = "user")
-    private List<PurchaseEntity> purchases;
+    @OneToMany(targetEntity = CheckEntity.class, cascade = CascadeType.ALL, mappedBy = "user")
+    private List<CheckEntity> checks;
 
     public UserEntity() {}
 

@@ -1,13 +1,11 @@
 package rtu.recruit.repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import rtu.recruit.entities.PurchaseEntity;
-import rtu.recruit.entities.UserEntity;
+import rtu.recruit.entities.ProductEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 
-public interface PurchaseRepo extends JpaRepository<PurchaseEntity, Long> {
-    public List<PurchaseEntity> findAllByUserId(long id);
+public interface PurchaseRepo extends JpaRepository<ProductEntity, Long> {
+    public List<ProductEntity> findAllByUserId(long id);
 }

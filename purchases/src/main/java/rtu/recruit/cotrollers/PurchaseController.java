@@ -3,7 +3,7 @@ package rtu.recruit.cotrollers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import rtu.recruit.entities.PurchaseEntity;
+import rtu.recruit.entities.ProductEntity;
 import rtu.recruit.services.PurchaseService;
 
 @RestController
@@ -13,7 +13,7 @@ public class PurchaseController {
     PurchaseService purchaseService;
 
     @PostMapping(value = "/{userId}")
-    public ResponseEntity add(@PathVariable Long userId, @RequestBody PurchaseEntity purchase) {
+    public ResponseEntity add(@PathVariable Long userId, @RequestBody ProductEntity purchase) {
         try {
             return ResponseEntity.ok(purchaseService.addOrUpdate(userId, purchase));
         } catch (Exception e) {
