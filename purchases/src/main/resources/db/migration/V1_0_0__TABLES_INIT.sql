@@ -1,17 +1,37 @@
 CREATE TABLE IF NOT EXISTS users (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    address VARCHAR(255)
+    address VARCHAR(255),
+    password VARCHAR(255)
 ) ENGINE=MyISAM;
 
-CREATE TABLE IF NOT EXISTS purchases (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NOT NULL,
-    date DATE NOT NULL DEFAULT CURRENT_DATE(),
+CREATE TABLE IF NOT EXISTS products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
-    total_cost DOUBLE NOT NULL,
-    CONSTRAINT user_id_fk
-    FOREIGN KEY (user_id) REFERENCES users (id)
+    description VARCHAR,
+    date DATE NOT NULL DEFAULT CURRENT_DATE(),
+    cost DOUBLE NOT NULL,
+    category VARCHAR NOT NULL
+) ENGINE=MyISAM;
+
+CREATE TABLE IF NOT EXISTS checks (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    payment_type VARCHAR(255) NOT NULL,
+    total DOUBLE NOT NULL,
+    CONSTRAINT user_id_fk FOREIGN KEY (user_id) REFERENCES users (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
-) ENGINE=MyISAM;
+) engine=MyISAM;
+
+CREATE TABLE IF NOT EXISTS check_products (
+    check_id INT NOT NULL,
+    product_id INT NOT NULL,
+    cnt DOUBLE NOT NULL,
+    CONSTRAINT check_id_fk FOREIGN KEY (check_id) REFERENCES checks (id)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION,
+    CONSTRAINT product_id_fk FOREIGN KEY (product_id) REFERENCES products (id)
+    ON DELETE RESTRICT
+    ON UPDATE NO ACTION
+) engine=MyISAM;
