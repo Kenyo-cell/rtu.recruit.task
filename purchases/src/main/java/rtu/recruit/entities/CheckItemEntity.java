@@ -22,6 +22,7 @@ public class CheckItemEntity {
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 
+    @Column(name = "cnt")
     private double count;
 
     public CheckItemEntity() {}

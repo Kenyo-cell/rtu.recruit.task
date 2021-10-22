@@ -6,6 +6,6 @@ import rtu.recruit.entities.ProductEntity;
 import java.util.List;
 
 
-public interface PurchaseRepo extends JpaRepository<ProductEntity, Long> {
+public interface ProductsRepo extends JpaRepository<ProductEntity, Long> {
 
 }
