@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface PurchaseRepo extends JpaRepository<ProductEntity, Long> {
-    public List<ProductEntity> findAllByUserId(long id);
+
 }

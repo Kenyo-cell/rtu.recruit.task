@@ -28,7 +28,7 @@ public class PurchaseService {
     }
 
     public List<ProductEntity> getAllByUserId(long userId) {
-        List<ProductEntity> entities = purchaseRepo.findAllByUserId(userId);
+        List<ProductEntity> entities = purchaseRepo.findAll();
         return entities;
     }
 

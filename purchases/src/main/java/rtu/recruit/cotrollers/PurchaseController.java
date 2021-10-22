@@ -24,7 +24,7 @@ public class PurchaseController {
     @GetMapping(value = "/purchases")
     public ResponseEntity getAllByUserId(@RequestParam(name = "userId") Long userId) {
         try {
-            return ResponseEntity.ok(purchaseService.getAllByUserId(userId));
+            return ResponseEntity.ok("Ok");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

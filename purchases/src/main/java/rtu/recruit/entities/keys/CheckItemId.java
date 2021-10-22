@@ -4,10 +4,10 @@ import javax.persistence.Column;
 import java.io.Serializable;
 
 public class CheckItemId implements Serializable {
-    @Column(name = "check_id")
+    @Column(name = "check_id", insertable = false, updatable = false)
     private long checkId;
 
-    @Column(name = "product_id")
+    @Column(name = "product_id", insertable = false, updatable = false)
     private long productId;
 
     public CheckItemId() {}

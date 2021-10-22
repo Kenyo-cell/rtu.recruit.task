@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
-    description VARCHAR,
+    description TEXT,
     date DATE NOT NULL DEFAULT CURRENT_DATE(),
     cost DOUBLE NOT NULL,
-    category VARCHAR NOT NULL
+    category VARCHAR(255) NOT NULL
 ) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS checks (
