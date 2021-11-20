@@ -1,52 +1,53 @@
 package rtu.recruit.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import rtu.recruit.entities.keys.CheckItemId;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "check_item")
-@IdClass(CheckItemId.class)
+@Table(name = "check_items")
 public class CheckItemEntity {
-    @Id
-    private long checkId;
 
-    @Id
-    private long productId;
+    @EmbeddedId
+    @JsonProperty("id")
+    private CheckItemId itemId;
 
-    @ManyToOne
-    @JoinColumn(name = "check_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "check_id", insertable = false, updatable = false)
+    @JsonIgnore
     private CheckEntity check;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
     private ProductEntity product;
 
     @Column(name = "cnt")
     private double count;
 
+
     public CheckItemEntity() {}
 
-    public CheckItemEntity(long checkId, long productId, double count) {
-        this.checkId = checkId;
-        this.productId = productId;
+    public CheckItemEntity(CheckItemId itemId, double count) {
+        this.itemId = itemId;
         this.count = count;
     }
 
     public long getCheckId() {
-        return checkId;
+        return itemId.getCheckId();
     }
 
     public void setCheckId(long checkId) {
-        this.checkId = checkId;
+        this.itemId.setCheckId(checkId);
     }
 
     public long getProductId() {
-        return productId;
+        return itemId.getProductId();
     }
 
     public void setProductId(long productId) {
-        this.productId = productId;
+        this.itemId.setProductId(productId);
     }
 
     public double getCount() {
@@ -55,5 +56,21 @@ public class CheckItemEntity {
 
     public void setCount(double count) {
         this.count = count;
+    }
+
+    public CheckEntity getCheck() {
+        return check;
+    }
+
+    public void setCheck(CheckEntity check) {
+        this.check = check;
+    }
+
+    public ProductEntity getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductEntity product) {
+        this.product = product;
     }
 }

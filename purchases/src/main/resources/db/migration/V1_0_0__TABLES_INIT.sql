@@ -19,20 +19,21 @@ CREATE TABLE IF NOT EXISTS checks (
     user_id INT NOT NULL,
     payment_type VARCHAR(255) NOT NULL,
     total DOUBLE NOT NULL,
+    closed BOOLEAN NOT NULL DEFAULT FALSE,
     CONSTRAINT user_id_fk FOREIGN KEY (user_id) REFERENCES users (id)
     ON DELETE CASCADE
     ON UPDATE CASCADE
 ) engine=MyISAM;
 
-CREATE TABLE IF NOT EXISTS check_item (
+CREATE TABLE IF NOT EXISTS check_items (
     check_id INT NOT NULL,
     product_id INT NOT NULL,
     cnt DOUBLE NOT NULL,
     CONSTRAINT check_id_fk FOREIGN KEY (check_id) REFERENCES checks (id)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
     CONSTRAINT product_id_fk FOREIGN KEY (product_id) REFERENCES products (id)
-    ON DELETE RESTRICT
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
     CONSTRAINT pk_id PRIMARY KEY (check_id, product_id)
 ) engine=MyISAM;

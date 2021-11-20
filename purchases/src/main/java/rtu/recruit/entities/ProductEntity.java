@@ -19,7 +19,10 @@ public class ProductEntity {
     @Column(name = "product_name", nullable = false)
     private String name;
 
-    @Column(name = "total_cost", nullable = false)
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "cost", nullable = false)
     private double cost;
 
     @Enumerated(EnumType.STRING)
@@ -67,5 +70,21 @@ public class ProductEntity {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
