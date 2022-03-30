@@ -14,6 +14,7 @@ public interface CheckItemRepo extends JpaRepository<CheckItemEntity, CheckItemI
     CheckItemEntity insert(@Param("check_id") long check_id,
                            @Param("product_id") long product_id,
                            @Param("count") double count);
+
     @Query(value = "SELECT c FROM CheckItemEntity c WHERE c.check.id = :id")
     List<CheckItemEntity> getAllByCheckId(@Param("id") long checkId);
 }

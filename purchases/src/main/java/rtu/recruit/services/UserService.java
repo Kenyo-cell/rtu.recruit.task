@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rtu.recruit.entities.CheckEntity;
 import rtu.recruit.entities.CheckItemEntity;
-import rtu.recruit.entities.ProductEntity;
 import rtu.recruit.entities.UserEntity;
 import rtu.recruit.entities.keys.CheckItemId;
 import rtu.recruit.exceptions.UserDBException;
 import rtu.recruit.repos.CheckRepo;
-import rtu.recruit.repos.ProductsRepo;
 import rtu.recruit.repos.UserRepo;
 
 @Service
@@ -19,9 +17,6 @@ public class UserService {
 
     @Autowired
     private CheckRepo checkRepo;
-
-    @Autowired
-    private ProductsRepo productsRepo;
 
     public UserEntity register(UserEntity entity) throws UserDBException {
         if (userRepo.findById(entity.getId()).isPresent()) {
@@ -50,7 +45,6 @@ public class UserService {
     public boolean addProductItem(long user_id, long item_id, double count) throws UserDBException {
         if (!userRepo.existsById(user_id)) throw new UserDBException("User not found");
         CheckEntity check = checkRepo.findFirstByUserIdAndNotClosed(user_id);
-//        check.getItems().add(new CheckItemEntity(check.getId(), item_id, count));
         check.getItems().add(new CheckItemEntity(new CheckItemId(check.getId(), item_id), count));
         return true;
     }

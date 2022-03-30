@@ -1,13 +1,10 @@
-package rtu.recruit.cotrollers;
+package rtu.recruit.cotroller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rtu.recruit.services.CheckService;
-
-import java.util.Map;
 
 @RestController
 public class CheckController {
@@ -16,7 +13,7 @@ public class CheckController {
     CheckService checkService;
 
     @GetMapping(value = "/{userId}/checks")
-    public ResponseEntity getAllUserChecks(@PathVariable long userId) {
+    public ResponseEntity<?> getAllUserChecks(@PathVariable long userId) {
         try {
             return ResponseEntity.ok(checkService.getAllChecksByUserId(userId));
         } catch (Exception e) {
@@ -25,8 +22,8 @@ public class CheckController {
     }
 
     @GetMapping(value = "{userId}/{checkId}")
-    public ResponseEntity getAllCheckItems(@PathVariable long userId,
-                                           @PathVariable long checkId) {
+    public ResponseEntity<?> getAllCheckItems(@PathVariable long userId,
+                                              @PathVariable long checkId) {
         try {
             return ResponseEntity.ok(checkService.getAllCheckItemsByCheckId(checkId));
         } catch (Exception e) {
@@ -35,7 +32,7 @@ public class CheckController {
     }
 
     @PostMapping(value = "/add")
-    public ResponseEntity addItemToCheck(@RequestBody String body) throws JsonProcessingException {
+    public ResponseEntity<?> addItemToCheck(@RequestBody String body) throws JsonProcessingException {
         try {
             return ResponseEntity.ok(checkService.addItemToCheckOrCreateCheck(body));
         } catch (Exception e) {

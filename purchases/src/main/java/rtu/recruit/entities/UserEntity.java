@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name = "users")
 public class UserEntity {
 
     @Id
@@ -27,7 +27,8 @@ public class UserEntity {
     @OneToMany(targetEntity = CheckEntity.class, cascade = CascadeType.ALL, mappedBy = "user")
     private List<CheckEntity> checks;
 
-    public UserEntity() {}
+    public UserEntity() {
+    }
 
     public UserEntity(long id, String name, String address) {
         this.id = id;

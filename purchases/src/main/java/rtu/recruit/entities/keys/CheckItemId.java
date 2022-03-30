@@ -16,7 +16,8 @@ public class CheckItemId implements Serializable {
     @Column(name = "product_id", insertable = false, updatable = false)
     private long productId;
 
-    public CheckItemId() {}
+    public CheckItemId() {
+    }
 
     public CheckItemId(long checkId, long productId) {
         this.checkId = checkId;

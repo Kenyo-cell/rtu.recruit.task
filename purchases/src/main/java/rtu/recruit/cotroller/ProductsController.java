@@ -1,4 +1,4 @@
-package rtu.recruit.cotrollers;
+package rtu.recruit.cotroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ public class ProductsController {
     ProductsService productsService;
 
     @PostMapping(value = "/products/add")
-    public ResponseEntity add(@RequestBody ProductEntity product) {
+    public ResponseEntity<?> add(@RequestBody ProductEntity product) {
         try {
             return ResponseEntity.ok(productsService.addOrUpdate(product));
         } catch (Exception e) {
@@ -22,7 +22,7 @@ public class ProductsController {
     }
 
     @GetMapping(value = "/products")
-    public ResponseEntity getAll() {
+    public ResponseEntity<?> getAll() {
         try {
             return ResponseEntity.ok(productsService.getAll());
         } catch (Exception e) {
@@ -31,7 +31,7 @@ public class ProductsController {
     }
 
     @GetMapping(value = "/products/{id}")
-    public ResponseEntity getProductById(@PathVariable long id) {
+    public ResponseEntity<?> getProductById(@PathVariable long id) {
         try {
             return ResponseEntity.ok(productsService.getById(id));
         } catch (Exception e) {
@@ -40,7 +40,7 @@ public class ProductsController {
     }
 
     @DeleteMapping(value = "/products/{id}")
-    public ResponseEntity deleteProductById(@PathVariable long id) {
+    public ResponseEntity<?> deleteProductById(@PathVariable long id) {
         try {
             return ResponseEntity.ok(productsService.deleteById(id));
         } catch (Exception e) {

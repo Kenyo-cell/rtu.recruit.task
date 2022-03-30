@@ -27,7 +27,8 @@ public class CheckItemEntity {
     private double count;
 
 
-    public CheckItemEntity() {}
+    public CheckItemEntity() {
+    }
 
     public CheckItemEntity(CheckItemId itemId, double count) {
         this.itemId = itemId;

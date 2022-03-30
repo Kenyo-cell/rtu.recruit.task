@@ -29,7 +29,8 @@ public class ProductEntity {
     @Column(name = "category")
     private Category category;
 
-    public ProductEntity() {}
+    public ProductEntity() {
+    }
 
     public ProductEntity(long id, Date date, String name,
                          double cost, Category category) {
